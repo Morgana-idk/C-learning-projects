@@ -1,6 +1,3 @@
-# Simple-CPU-Monitor
-Um monitor de CPU simples feito em C!
-
 # 🚀 Minha Jornada no C (Low-Level Learning)
 
 Repositório para registrar minha evolução na programação C, saindo do básico até o controle de hardware no Arch Linux.
