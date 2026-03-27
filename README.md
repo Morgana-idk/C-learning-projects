@@ -20,23 +20,17 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 ### 📅 Dia 4: Aritmética de Ponteiros e Refatoração
 
 - **O que aprendi:** Como transformar texto em dados matemáticos e navegar na memória física.
-
 - **Conceitos:** Uso de `atof`, aritmética de ponteiros (ponteiro + 2) e organização de diretórios via terminal.
-
 - **Projeto:** Criado o CPU-Monitor-Main, capaz de filtrar o Kernel e calcular o clock real do processador.
 
 ### 📅 Dia 5: Persistência de Dados e Fluxo de Arquivos
 
 - **O que aprendi:** Como fazer o software "lembrar" das coisas após ser fechado.
-
 - **Conceitos:** Manipulação de escrita com `fprintf`, modos de abertura de arquivo ("a" para append) e prevenção de bugs de escopo.
-
 - **Projeto:** Calculador de Notas, um sistema que gera um banco de dados em .txt com histórico de alunos.
 
 ### 📅 Dia 6: Estruturas de Dados e Encapsulamento
 
 - **O que aprendi:** Uso de `atoi`, organização de codigo e `struct` para deixar o codigo mais limpo.
-
 - **Conceitos:** Criação de structs para organizar dados complexos, uso de strcpy (string copy) e atoi (ASCII to Integer).
-
 - **Arquitetura:** Separação entre a lógica de leitura do `/proc` e a exibição final dos dados.
