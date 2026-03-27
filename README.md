@@ -17,18 +17,7 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **Conceitos:** Manipulação de arquivos com `FILE *`, `fopen`, `fgets` e `fclose`.
 - **Filtros:** Uso da biblioteca `string.h` e a função `strstr` para filtrar informações específicas do `/proc/cpuinfo`.
 
-### 📅 Dia 4: Aritmética de Ponteiros e Refatoração
-
-- **O que aprendi:** Como transformar texto em dados matemáticos e navegar na memória física.
-
-- **Conceitos:** Uso de `atof`, aritmética de ponteiros (ponteiro + 2) e organização de diretórios via terminal.
-
-- **Projeto:** Criado o CPU-Monitor-Main, capaz de filtrar o Kernel e calcular o clock real do processador.
-
-### 📅 Dia 5: Persistência de Dados e Fluxo de Arquivos
-
-- **O que aprendi:** Como fazer o software "lembrar" das coisas após ser fechado.
-
-- **Conceitos:** Manipulação de escrita com `fprintf`, modos de abertura de arquivo ("a" para append) e prevenção de bugs de escopo.
-
-- **Projeto:** Calculador de Notas, um sistema que gera um banco de dados em .txt com histórico de alunos.
+### 📅 Dia 4: Aritmética de Ponteiros e Conversão
+- **O que aprendi:** Como transformar texto em dados matemáticos e navegar na memória.
+- **Conceitos:** Uso de `atof` (conversão de string para float) e aritmética de ponteiros (`ponteiro + 2`) para pular caracteres indesejados.
+- **Projeto:** Criado um "Monitor de CPU" que calcula o clock do Celeron de MHz para GHz.
