@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -g
-TARGET = CPU-Monitor-Compilated
-SRC = CPU-Monitor-Main.c
+TARGET = sentinel
+SRC = main.c
 
 all:$(TARGET)
 
