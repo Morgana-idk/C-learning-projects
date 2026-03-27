@@ -32,3 +32,11 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **Conceitos:** Manipulação de escrita com `fprintf`, modos de abertura de arquivo ("a" para append) e prevenção de bugs de escopo.
 
 - **Projeto:** Calculador de Notas, um sistema que gera um banco de dados em .txt com histórico de alunos.
+
+### 📅 Dia 6: Estruturas de Dados e Encapsulamento
+
+- **O que aprendi:** Uso de `atoi`, organização de codigo e `struct` para deixar o codigo mais limpo.
+
+- **Conceitos:** Criação de structs para organizar dados complexos, uso de strcpy (string copy) e atoi (ASCII to Integer).
+
+- **Arquitetura:** Separação entre a lógica de leitura do /proc e a exibição final dos dados.

@@ -10,32 +10,43 @@ int main() {
 
     if (arquivo == NULL) return 1;
 
-    int clonemodelname = 0;
-    int clonecpumhz = 0;
-
-    while (fgets(linha, sizeof(linha), arquivo)) {
-
-        if (strstr(linha, "model name") != NULL && clonemodelname == 0){
-            char *valorcputexto = strchr(linha, ':') + 2;
-            printf("nome da cpu: %s \n", valorcputexto);
-            clonemodelname++;
-        }
-
-        if (strstr(linha, "cpu MHz") != NULL && clonecpumhz == 0) {
-
-            char *valortexto = strchr(linha, ':');
-
-            if (valortexto != NULL){
-
-                float mhz = atof(valortexto + 2);
-                float ghz = mhz / 1000;
+    struct CPU_infos{
+        char NomeCPU[256];
+        float clock;
+        int nucleos;
+    };
+    
+    struct CPU_infos myCPU = {"", 0, 0};
+    while (fgets(linha, sizeof(linha), arquivo)){
+        if (strstr(linha, "model name") != NULL){
+            char *nameadress = strchr(linha, ':') + 2;
+            if (nameadress != NULL){
+                strcpy(myCPU.NomeCPU, linha);
+            } else {
+                strcpy(myCPU.NomeCPU, "Not Indentfied");
+            };
+        } else if (strstr(linha, "cpu MHz")){
+            char *clockaddress = strchr(linha, ':') + 2;
             
-                printf("Ghz original: %.2fGHz \n", ghz);
-                clonecpumhz++;
+            if (clockaddress != NULL){
+                float MHz = atof(clockaddress);
+                float GHz = MHz / 1000;
+                myCPU.clock = GHz;
+            } else {
+                myCPU.clock = 0;
+            }
+        } else if (strstr(linha, "cpu cores")){
+            char *coresadress = strchr(linha, ':') + 2;
+            if (coresadress != NULL) {
+                myCPU.nucleos = atoi(coresadress);
+            } else {
+                myCPU.nucleos = 0;
             }
         }
+        
     }
-
+    
+    printf("Nome da CPU: %s \n Clock: %0.2f \n Núcleos: %d \n", myCPU.NomeCPU, myCPU.clock, myCPU.nucleos);
     fclose(arquivo);
     printf("CPU Monitor fechado com sucesso! \n");
 }
