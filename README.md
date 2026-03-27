@@ -39,4 +39,4 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 
 - **Conceitos:** Criação de structs para organizar dados complexos, uso de strcpy (string copy) e atoi (ASCII to Integer).
 
-- **Arquitetura:** Separação entre a lógica de leitura do /proc e a exibição final dos dados.
+- **Arquitetura:** Separação entre a lógica de leitura do `/proc` e a exibição final dos dados.
