@@ -21,7 +21,8 @@ int main() {
         if (strstr(linha, "model name") != NULL){
             char *nameadress = strchr(linha, ':') + 2;
             if (nameadress != NULL){
-                strcpy(myCPU.NomeCPU, linha);
+                strcpy(myCPU.NomeCPU, nameadress);
+                myCPU.NomeCPU[strcspn(myCPU.NomeCPU, "\n")] = '\0';
             } else {
                 strcpy(myCPU.NomeCPU, "Not Indentfied");
             };
