@@ -17,7 +17,7 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **Conceitos:** Manipulação de arquivos com `FILE *`, `fopen`, `fgets` e `fclose`.
 - **Filtros:** Uso da biblioteca `string.h` e a função `strstr` para filtrar informações específicas do `/proc/cpuinfo`.
 
-📅 Dia 4: Aritmética de Ponteiros e Refatoração
+### 📅 Dia 4: Aritmética de Ponteiros e Refatoração
 
 - **O que aprendi:** Como transformar texto em dados matemáticos e navegar na memória física.
 
@@ -25,7 +25,7 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 
 - **Projeto:** Criado o CPU-Monitor-Main, capaz de filtrar o Kernel e calcular o clock real do processador.
 
-📅 Dia 5: Persistência de Dados e Fluxo de Arquivos
+### 📅 Dia 5: Persistência de Dados e Fluxo de Arquivos
 
 - **O que aprendi:** Como fazer o software "lembrar" das coisas após ser fechado.
 
