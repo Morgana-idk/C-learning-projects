@@ -7,7 +7,7 @@ LNFLAGS = -lncurses
 all:$(TARGET)
 
 $(TARGET):$(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LNFLAGS) && clear && ./$(TARGET)
+	make clean && $(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LNFLAGS) && clear && ./$(TARGET)
 
 clean:
 	rm -f $(TARGET)
