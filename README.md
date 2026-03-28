@@ -34,3 +34,10 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **O que aprendi:** Uso de `atoi`, organização de codigo e `struct` para deixar o codigo mais limpo.
 - **Conceitos:** Criação de structs para organizar dados complexos, uso de strcpy (string copy) e atoi (ASCII to Integer).
 - **Arquitetura:** Separação entre a lógica de leitura do `/proc` e a exibição final dos dados.
+
+### 📅 Dia 7: TUI (Terminal User Interface) e ncurses
+
+-  **O que aprendi:** Como sair do printf linear e criar interfaces visuais interativas no terminal.
+-  **Conceitos:** Manipulação da biblioteca ncurses, captura de teclas em tempo real (getch), controle de janelas e o loop de renderização.
+-  **Hardware vs. Software:** Implementação de navegação por setas (teclado) para selecionar módulos do sistema.
+-  **Projeto:** Início do Sentinel Monitor, uma ferramenta de monitoramento em tempo real com interface gráfica de terminal (estilo htop).
