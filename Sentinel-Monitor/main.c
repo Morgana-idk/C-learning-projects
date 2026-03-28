@@ -27,11 +27,26 @@ int main() {
     struct CPUINFO myCPU = {"", 0, 0};
     struct MEMINFO myMEM = {0, 0, 0};
 
-    FILE *cpuinfo = fopen("/proc/cpuinfo", "r");
-    FILE *meminfo = fopen("/proc/meminfo", "r");
     char linha[256];
 
-    while(fgets(linha, sizeof(linha), cpuinfo)){
+    initscr();
+    cbreak();
+    noecho();
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
+    curs_set(0);
+
+    while (1){
+        erase();
+        if (tela_atual == 0){
+            mvprintw(0, 0, "========SENTINEL MONITOR========");
+            mvprintw(1, 0, "CPU INFO      ---      MEM INFO");
+            mvprintw(3, 0, "%scpu info            %smem info", opcao1, opcao2);
+            mvprintw(4, 0, "Aperte Q para Sair.");
+            mvprintw(5, 0, "================================");
+        } else if (tela_atual == 1){
+            FILE *cpuinfo = fopen("/proc/cpuinfo", "r");
+            while(fgets(linha, sizeof(linha), cpuinfo)){
         if (strstr(linha, "model name") != NULL){
             char *nameaddress = strchr(linha, ':') + 2;
             if (nameaddress != NULL){
@@ -59,48 +74,6 @@ int main() {
             }
         }
     }
-
-    while(fgets(linha, sizeof(linha), meminfo)){
-        if (strstr(linha, "MemTotal") != NULL){
-            char *totaladdress = strchr(linha, ':') + 2;
-            if (totaladdress != NULL){
-                myMEM.total = atoi(totaladdress) / 100000;
-            } else {
-                myMEM.total = 0;
-            }
-        } else if (strstr(linha, "MemFree") != NULL){
-            char *freeaddress = strchr(linha, ':') + 2;
-            if (freeaddress != NULL){
-                myMEM.free = atoi(freeaddress) / 100000;
-            } else {
-                myMEM.free = 0;
-            }
-        } else if (strstr(linha, "Cached") != NULL){
-            char *cacheaddress = strchr(linha, ':') + 2;
-            if (cacheaddress != NULL){
-                myMEM.cache = atoi(cacheaddress) / 100000;
-            } else {
-                myMEM.cache = 0;
-            }
-        }
-    }
-
-    initscr();
-    cbreak();
-    noecho();
-    keypad(stdscr, TRUE);
-    nodelay(stdscr, TRUE);
-    curs_set(0);
-
-    while (1){
-        erase();
-        if (tela_atual == 0){
-            mvprintw(0, 0, "========SENTINEL MONITOR========");
-            mvprintw(1, 0, "CPU INFO      ---      MEM INFO");
-            mvprintw(3, 0, "%scpu info            %smem info", opcao1, opcao2);
-            mvprintw(4, 0, "Aperte Q para Sair.");
-            mvprintw(5, 0, "================================");
-        } else if (tela_atual == 1){
             mvprintw(0, 0, "========SENTINEL MONITOR========");
             mvprintw(1, 0, "------------CPU INFO------------");
             mvprintw(3, 0, "Nome da CPU: %s", myCPU.nomecpu);
@@ -109,11 +82,36 @@ int main() {
             mvprintw(7, 0, "Aperte M para Voltar.");
             mvprintw(8, 0, "================================");
         } else if (tela_atual == 2){
+            FILE *meminfo = fopen("/proc/meminfo", "r");
+            while(fgets(linha, sizeof(linha), meminfo)){
+        if (strstr(linha, "MemTotal") != NULL){
+            char *totaladdress = strchr(linha, ':') + 2;
+            if (totaladdress != NULL){
+                myMEM.total = atoi(totaladdress) / 1024;
+            } else {
+                myMEM.total = 0;
+            }
+        } else if (strstr(linha, "MemFree") != NULL){
+            char *freeaddress = strchr(linha, ':') + 2;
+            if (freeaddress != NULL){
+                myMEM.free = atoi(freeaddress) / 1024;
+            } else {
+                myMEM.free = 0;
+            }
+        } else if (strstr(linha, "Cached") != NULL && strstr(linha, "SwapCached") == NULL){
+            char *cacheaddress = strchr(linha, ':') + 2;
+            if (cacheaddress != NULL){
+                myMEM.cache = atoi(cacheaddress) / 1024;
+            } else {
+                myMEM.cache = 0;
+            }
+        }
+    }
             mvprintw(0, 0, "========SENTINEL MONITOR========");
             mvprintw(1, 0, "------------MEM INFO------------");
             mvprintw(3, 0, "Memoria total: %d MB", myMEM.total);
             mvprintw(4, 0, "Memoria livre: %d MB", myMEM.free);
-            mvprintw(5, 0, "Cache: %d GB", myMEM.cache);
+            mvprintw(5, 0, "Cache: %d MB", myMEM.cache);
             mvprintw(7, 0, "Aperte M para Voltar.");
             mvprintw(8, 0, "================================");
         }
