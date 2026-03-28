@@ -10,11 +10,6 @@ int main() {
     char opcao[30];
     char opcao1[2];
     char opcao2[2];
-    int print0 = 0;
-    int print1 = 1;
-    int print3 = 3;
-    int print4 = 4;
-    int print5 = 5;
     int tecla;
     struct CPUINFO{
         char nomecpu[256];
@@ -65,11 +60,11 @@ int main() {
 
     while (1){
         erase();
-        mvprintw(print0, 0, "========SENTINEL MONITOR========");
-        mvprintw(print1, 0, "CPU INFO      ---      MEM INFO");
-        mvprintw(print3, 0, "%scpu info            %smem info", opcao1, opcao2);
-        mvprintw(print4, 0, "Aperte Q para Sair.");
-        mvprintw(print5, 0, "================================");
+        mvprintw(0, 0, "========SENTINEL MONITOR========");
+        mvprintw(1, 0, "CPU INFO      ---      MEM INFO");
+        mvprintw(3, 0, "%scpu info            %smem info", opcao1, opcao2);
+        mvprintw(4, 0, "Aperte Q para Sair.");
+        mvprintw(5, 0, "================================");
 
         tecla = getch();
 
@@ -83,22 +78,9 @@ int main() {
             strcpy(opcao2, "");
         } else if (tecla == 'q' || tecla == 'Q') {
             break;
-        } else if (tecla == KEY_ENTER) {
+        } else if (tecla == KEY_ENTER || tecla == '\n' || tecla == 10) {
             if (strcmp(opcao, "CPUINFO") == 0) {
-                for (int i = 0; i <= 3; i++){
-                    print0++;
-                    print1++;
-                    print3++;
-                    print4++;
-                    print5++;
-                    if (i == 1){
-                        mvprintw(i, 0, "Nome da CPU: %s", myCPU.nomecpu);
-                    } else if (i == 2){
-                        mvprintw(i, 0, "Clock: %s", myCPU.clock);
-                    } else if (i == 3){
-                        mvprintw(i, 0, "Nucleos: %d", myCPU.nucleos);
-                    }
-                }
+                
             }
         }
 
