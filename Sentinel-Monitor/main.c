@@ -20,9 +20,8 @@ int main() {
     };
     struct CPUINFO{
         char nomecpu[256];
-        char clock[50];
+        char clock[30];
         int nucleos;
-        int uptime
     };
     
     struct CPUINFO myCPU = {"", 0, 0, 0};
@@ -55,8 +54,18 @@ int main() {
         } else if (tela_atual == 1){
             FILE *uptime = fopen("/proc/uptime", "r");
             FILE *cpuinfo = fopen("/proc/cpuinfo", "r");
-            char linhauptime[256];
-            myCPU.uptime = atoi(fgets(linhauptime, sizeof(linhauptime), uptime));
+            
+            double uptime_segundos;
+            if (uptime){
+                fscanf(uptime, "%lf", &uptime_segundos);
+                fclose(uptime);
+            }
+            int h = uptime_segundos / 3600;
+            int m = ((int)uptime_segundos % 3600) / 60;
+            int s = (int)uptime_segundos % 60;
+
+
+            
 
             while(fgets(linha, sizeof(linha), cpuinfo)){
         if (strstr(linha, "model name") != NULL){
@@ -93,7 +102,7 @@ int main() {
             mvprintw(3, 0, "Nome da CPU: %s", myCPU.nomecpu);
             mvprintw(4, 0, "Clock da CPU: %s", myCPU.clock);
             mvprintw(5, 0, "Nucleos da CPU: %d", myCPU.nucleos);
-            mvprintw(6, 0, "Uptime: %d", myCPU.uptime);
+            mvprintw(6, 0, "Uptime: %d:%d:%d", h, m, s);
             mvprintw(8, 0, "Aperte M para Voltar.");
             mvprintw(9, 0, "================================");
         } else if (tela_atual == 2){
