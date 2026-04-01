@@ -7,7 +7,8 @@ int main() {
     char linha[256];
 
     if (entrada == NULL){
-        printf("Você precisa criar um arquivo chamado 'myscript.lua' \n ou move-lo para a pasta do app e renomea-lo para 'myscript.lua'");
+        printf("Você precisa criar um arquivo chamado 'myscript.lua' \n ou move-lo para a pasta do app e renomea-lo para 'myscript.lua' \n");
+        return 1;
     }
 
     while (fgets(linha, sizeof(linha), entrada)){

@@ -7,8 +7,8 @@ local nsei = 5-3
 --gfdgdfggs
 -- gdfgdfgjr5tk
 
-print(oi) --sdjasjda
+print(oi) -- sdjasjda
 print(nsei)
 print(sla) --jasnda
-print(1+1) --fdssd
+print(1+1) -- fdssd
 --djfnkdjba
