@@ -48,3 +48,9 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **Conceitos:** Implementação de `enum` para controle de telas, leitura simultânea de múltiplos arquivos do Kernel (`/proc/cpuinfo` e `/proc/meminfo`).
 - **Resolução de Bugs:** Filtragem avançada de strings para evitar falsos positivos (ex: ignorar SwapCached ao buscar o cache real).
 - **Arquitetura:** Criação de um sistema de navegação bidirecional (Menu -> Detalhes -> Menu) mantendo a persistência dos dados.
+
+### 📅 Dia 9: Estética TUI e Conversão de Tempo Real
+- **O que aprendi:** Como implementar sistemas de cores dinâmicas com `ncurses`.
+- **Conceitos:** Atributos de vídeo (`attron/attroff`), pares de cores e lógica de alertas (Feedback Visual).
+- **Matemática de Sistema:** Conversão de segundos brutos do `/proc/uptime` para o formato HH:MM:SS usando operadores de divisão e resto (`%`).
+- **Projeto:** Sentinel Monitor v1.1 - Agora com interface colorida e relógio de tempo de atividade.
