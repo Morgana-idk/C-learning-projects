@@ -1,22 +1,55 @@
-#include <stdio.h>
 #include "raylib.h"
 
 int main() {
-    int windowX = 800;
-    int windowY = 450;
-    InitWindow(windowX, windowY, "Mini Block Man!");
-    Vector2 playerPos = {windowX/2, windowY/2};
+    // Configurações
+    float speed = 300.0f;
+    float gravity = 1500.0f;    // Valor mais suave para o pulo não ser bizarro
+    float jumppower = -600.0f;  // Negativo porque no Y da tela, para cima é menos
+    float velocityY = 0.0f;
+    bool tocandochao = false;
 
-    while (!WindowShouldClose()){
-        if (IsKeyDown(KEY_RIGHT)) playerPos.x += 0.3;
-        if (IsKeyDown(KEY_LEFT)) playerPos.x -= 0.3;
-        if (IsKeyDown(KEY_UP)) playerPos.y -= 0.3;
-        if (IsKeyDown(KEY_DOWN)) playerPos.y += 0.3;
+    InitWindow(800, 450, "Mini Block Man - Corrigido!");
+    SetTargetFPS(60);
+
+    Rectangle player = { 400, 200, 40, 40 };
+    Rectangle floor = { 0, 410, 800, 40 };
+
+    while (!WindowShouldClose()) {
+        float frametime = GetFrameTime();
+
+        // 1. Movimento Horizontal
+        if (IsKeyDown(KEY_D)) player.x += speed * frametime;
+        if (IsKeyDown(KEY_A)) player.x -= speed * frametime;
+
+        // 2. Lógica de Pulo (Só pula se estiver no chão)
+        if (IsKeyPressed(KEY_SPACE) && tocandochao) {
+            velocityY = jumppower;
+            tocandochao = false;
+        }
+
+        // 3. Aplicação da Gravidade (Aceleração)
+        if (!tocandochao) {
+            velocityY += gravity * dt; // A velocidade aumenta conforme ele cai
+        } else {
+            if (velocityY > 0) velocityY = 0; // Para de cair se bater no chão
+        }
+
+        // Aplica a velocidade na posição
+        player.y += velocityY * dt;
+
+        // 4. Detecção de Colisão Real
+        if (CheckCollisionRecs(player, floor)) {
+            player.y = floor.y - player.height; // Ajuste de "pé no chão"
+            tocandochao = true;
+        } else {
+            tocandochao = false;
+        }
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawText("Mini Block Man!", 400, 400, 50, BLACK);
-            DrawRectangleV((Vector2){playerPos.x, playerPos.y}, (Vector2){40, 40}, RED);
+            DrawRectangleRec(floor, GREEN);
+            DrawRectangleRec(player, RED);
+            DrawText("ESPAÇO para pular!", 10, 10, 20, DARKGRAY);
         EndDrawing();
     }
     CloseWindow();
