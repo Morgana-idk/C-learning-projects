@@ -6,7 +6,7 @@ SRC = inventory.c
 all:$(TARGET)
 
 $(TARGET):$(SRC)
-	make clean && $(CC) $(CFLAGS) $(SRC) -o $(TARGET) && ./$(TARGET) && clear &
+	make clean && $(CC) $(CFLAGS) $(SRC) -o $(TARGET) && ./$(TARGET)
 
 clean:
 	rm -f $(TARGET)
