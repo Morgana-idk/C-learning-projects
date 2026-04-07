@@ -54,3 +54,9 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **Conceitos:** Atributos de vídeo (`attron/attroff`), pares de cores e lógica de alertas (Feedback Visual).
 - **Matemática de Sistema:** Conversão de segundos brutos do `/proc/uptime` para o formato HH:MM:SS usando operadores de divisão e resto (`%`).
 - **Projeto:** Sentinel Monitor v1.1 - Agora com interface colorida e relógio de tempo de atividade.
+
+### 📅 Dia 10: Motores de Física e Integração de Sistemas
+- **O que aprendi:** Como simular leis da natureza (Gravidade e Inércia) manualmente.
+- **Conceitos:** Implementação de vetores de velocidade, aceleração constante, detecção de colisão por detecção de sobreposição de retângulos (`CheckCollisionRecs`) e o conceito de "Delta Time" (`GetFrameTime`) para manter a física constante independente do FPS.
+- **Integração:** Experimentei a chamada de comandos do sistema via `stdlib.h` (`system()`) para integrar subprojetos (Sistema de Inventário) em tempo real.
+- **Projeto:** Mini Block Man v1.0 - Agora com gravidade funcional, pulo e persistência de inventário via arquivo `.txt`.
