@@ -1,4 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "raylib.h"
+#include <unistd.h>
 
 int main() {
     // Configurações
@@ -15,6 +18,7 @@ int main() {
     Rectangle floor = { 0, 410, 800, 40 };
 
     while (!WindowShouldClose()) {
+        
         float frametime = GetFrameTime();
 
         // 1. Movimento Horizontal
@@ -29,13 +33,13 @@ int main() {
 
         // 3. Aplicação da Gravidade (Aceleração)
         if (!tocandochao) {
-            velocityY += gravity * dt; // A velocidade aumenta conforme ele cai
+            velocityY += gravity * frametime; // A velocidade aumenta conforme ele cai
         } else {
             if (velocityY > 0) velocityY = 0; // Para de cair se bater no chão
         }
 
         // Aplica a velocidade na posição
-        player.y += velocityY * dt;
+        player.y += velocityY * frametime;
 
         // 4. Detecção de Colisão Real
         if (CheckCollisionRecs(player, floor)) {
@@ -53,5 +57,9 @@ int main() {
         EndDrawing();
     }
     CloseWindow();
+    system("clear");
+    printf("Obrigado por Jogar!!!\n\n\n");
+    sleep(2);
+    system("clear");
     return 0;
 }
