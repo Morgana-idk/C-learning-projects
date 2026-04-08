@@ -62,3 +62,9 @@ Repositório para registrar minha evolução na programação C, saindo do bási
 - **Conceitos:** Implementação de vetores de velocidade, aceleração constante, detecção de colisão por detecção de sobreposição de retângulos (`CheckCollisionRecs`) e o conceito de "Delta Time" (`GetFrameTime`) para manter a física constante independente do FPS.
 - **Integração:** Experimentei a chamada de comandos do sistema via `stdlib.h` (`system()`) para integrar subprojetos (Sistema de Inventário) em tempo real.
 - **Projeto:** Mini Block Man v1.0 - Agora com gravidade funcional, pulo e persistência de inventário via arquivo `.txt`.
+
+### 📅 Dia 11: A Barreira de Vidro e a Filosofia Open Source
+- **O que aprendi:** A dura realidade da incompatibilidade de software proprietário (Roblox) em hardware legado no Linux. 
+- **Conflito:** Testei Novetus, Studio Lite, Vinegar e RetroStudio. Conclusão: O "gargalo" da iGPU e o "Glue" da Microsoft tentaram barrar o progresso.
+- **Decisão:** Recusa total ao Windows. O aprendizado agora foca 100% em C e ferramentas que respeitam o usuário. Se o Studio não roda, eu construo minha própria lógica no VS Code.
+- 
