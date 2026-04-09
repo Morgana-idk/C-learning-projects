@@ -11,7 +11,7 @@ void update_inv(){
     if (diretorio_inv != NULL){
         char comando[200];
         getcwd(diretorio_atual, sizeof(diretorio_atual));
-        sprintf(comando, "cd %s && make && cd %s", diretorio_inv, diretorio_atual);
+        sprintf(comando, "cd %s && make clean && make && cd %s", diretorio_inv, diretorio_atual);
         system(comando);
     }
 };
@@ -29,6 +29,7 @@ inventory ler_inv(){
         int times = 0;
         char linha[50];
         while (fgets(linha, sizeof(linha), inv) && times < 5){
+            strtok(linha, "\n");
             strcpy(inventor.slots[times], linha);
             system("clear");
             printf("linha %d copiada para struct inventory: %s\n", times, linha);
@@ -39,8 +40,12 @@ inventory ler_inv(){
 };
 
 int main() {
+    system("clear");
     update_inv();
-    inventory inventor;
+    struct slots{
+        Rectangle slots[5];
+    };
+    inventory inventor = ler_inv();
     float speed = 300.0f;
     float gravity = 1500.0f;    // Valor mais suave para o pulo não ser bizarro
     float jumppower = -600.0f;  // Negativo porque no Y da tela, para cima é menos
@@ -59,12 +64,12 @@ int main() {
         if (IsKeyDown(KEY_I)){
             update_inv();
         }
-        Rectangle slot1 = { player.x + 1, floor.y + 1, 38 * 2, 38};
-        Rectangle slot2 = { player.x + (slot1.width + 5), floor.y + 1, 38 * 2, 38};
-        Rectangle slot3 = { player.x + (slot2.width * 2) + 10, floor.y + 1, 38 * 2, 38};
-        Rectangle slot4 = { player.x - slot2.width - 5, floor.y + 1, 38 * 2, 38};
-        Rectangle slot5 = { player.x - (slot4.width * 2) - 10, floor.y + 1, 38 * 2, 38};
         
+        struct slots slot = {{{ player.x + 1, floor.y + 1, 38 * 2, 38}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}};
+        slot.slots[1] = (Rectangle){ player.x + (slot.slots[0].width + 5), floor.y + 1, 38 * 2, 38};
+        slot.slots[2] = (Rectangle){ player.x + (slot.slots[1].width * 2) + 10, floor.y + 1, 38 * 2, 38};
+        slot.slots[3] = (Rectangle){ player.x - slot.slots[1].width - 5, floor.y + 1, 38 * 2, 38};
+        slot.slots[4] = (Rectangle){ player.x - (slot.slots[3].width * 2) - 10, floor.y + 1, 38 * 2, 38};
         float frametime = GetFrameTime();
 
         // 1. Movimento Horizontal
@@ -99,13 +104,13 @@ int main() {
             ClearBackground(RAYWHITE);
             DrawRectangleRec(floor, GREEN);
             DrawRectangleRec(player, RED);
-            DrawRectangleRec(slot1, GRAY);
-            DrawRectangleRec(slot2, GRAY);
-            DrawRectangleRec(slot3, GRAY);
-            DrawRectangleRec(slot4, GRAY);
-            DrawRectangleRec(slot5, GRAY);
+            DrawRectangleRec(slot.slots[0], GRAY);
+            DrawRectangleRec(slot.slots[1], GRAY);
+            DrawRectangleRec(slot.slots[2], GRAY);
+            DrawRectangleRec(slot.slots[3], GRAY);
+            DrawRectangleRec(slot.slots[4], GRAY);
             for (int i = 0; i < 5; i++){
-                DrawText()
+                DrawText(inventor.slots[i], slot.slots[i].x + 1, slot.slots[i].y, 5, BLACK);
             }
             DrawText("SLOTS!", 10, 10, 20, DARKGRAY);
         EndDrawing();

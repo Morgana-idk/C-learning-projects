@@ -9,7 +9,7 @@ int main(){
     };
     struct inventory inv = {{"Picareta", "Machado", "Espada", "Bloco de madeira", "Vazio"}};
     for (int i = 0; i < 5; i++){
-        if (inv.slots[i][0] != '\0'){
+        if (inv.slots[i][0] == '\0'){
             printf("não existe\n");
         } else {
             printf("existe\n");
