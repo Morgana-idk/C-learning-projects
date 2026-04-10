@@ -19,10 +19,10 @@ int main(){
     FILE *invtxt = fopen("../inv.txt", "w");
     
     inventory inv = {{
-        {"picaxe", 3, 1, "itemtextures/stone_picaxe.png"}, 
-        {"axe", 2, 1, "itemtextures/stone_axe.png"}, 
-        {"sword", 1, 1, "itemtextures/stone_sword.png"}, 
-        {"spruce log", 4, 1, "itemtextures/spruce_log.png"}, 
+        {"picaxe", 3, 1, "itemtextures/stone_picaxe.jpg"}, 
+        {"axe", 2, 1, "itemtextures/stone_axe.jpg"}, 
+        {"sword", 1, 1, "itemtextures/stone_sword.jpg"}, 
+        {"spruce log", 4, 1, "itemtextures/spruce_log.jpg"}, 
         {"empty", 0, 1}
     }};
     for (int i = 0; i < 5; i++){
