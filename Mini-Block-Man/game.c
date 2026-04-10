@@ -9,6 +9,7 @@ typedef struct{
     char nome[50];
     int id;
     int quantidade;
+    char textura[50];
 } item;
 
 typedef struct{
@@ -31,7 +32,7 @@ inventory ler_inv(){
     inventory inventor;
     FILE *inv = fopen("inv.txt", "r");
     if (inv != NULL){
-        for (int i = 0; i < 5; i++) strcpy(inventor.slots[i].nome, "Vazio");
+        for (int i = 0; i < 5; i++) strcpy(inventor.slots[i].nome, "empty");
         for (int i = 0; i < 5; i++) inventor.slots[i].id = 0;
         for (int i = 0; i < 5; i++) inventor.slots[i].quantidade = 1;
         int times = 0;
@@ -49,6 +50,7 @@ inventory ler_inv(){
                 int resultadoint;
                 char resultado2[20];
                 int resultado2int;
+                char resultado3[20];
 
                 sscanf(depoisdabarra, "%*c%[^|]", resultado);
                 resultadoint = atoi(resultado);
@@ -56,6 +58,8 @@ inventory ler_inv(){
                 sscanf(depoisdabarra, "%*c%*[^|]%*c%s", resultado2);
                 resultado2int = atoi(resultado2);
                 inventor.slots[times].quantidade = resultado2int;
+                sscanf(depoisdabarra, "%*c%*[^|]%*c%*[^|]%*c%s", resultado3);
+                strcpy(inventor.slots[times].textura, resultado3);
             }
 
             
@@ -83,6 +87,13 @@ int main() {
     InitWindow(800, 450, "Mini Block Man - Slots!");
     SetTargetFPS(60);
 
+    Texture2D texturascarregadas[5];
+    for (int i = 0; i < 5; i++){
+        if (strcmp(inventor.slots[i].nome, "empty") != 0){
+            texturascarregadas[i] = LoadTexture(inventor.slots[i].textura);
+        }
+    }
+
     
     Rectangle player = { 400, 200, 40, 40 };
     Rectangle floor = { 0, 410, 800, 40 };
@@ -93,11 +104,11 @@ int main() {
             update_inv();
         }
         
-        struct slots slot = {{{ player.x + 1, floor.y + 1, 38 * 2, 38}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}};
-        slot.slots[1] = (Rectangle){ player.x + (slot.slots[0].width + 5), floor.y + 1, 38 * 2, 38};
-        slot.slots[2] = (Rectangle){ player.x + (slot.slots[1].width * 2) + 10, floor.y + 1, 38 * 2, 38};
-        slot.slots[3] = (Rectangle){ player.x - slot.slots[1].width - 5, floor.y + 1, 38 * 2, 38};
-        slot.slots[4] = (Rectangle){ player.x - (slot.slots[3].width * 2) - 10, floor.y + 1, 38 * 2, 38};
+        struct slots slot = {{{ player.x + 1, floor.y + 1, 38, 38}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}};
+        slot.slots[1] = (Rectangle){ player.x + (slot.slots[0].width + 5), floor.y + 1, 38, 38};
+        slot.slots[2] = (Rectangle){ player.x + (slot.slots[1].width * 2) + 10, floor.y + 1, 38, 38};
+        slot.slots[3] = (Rectangle){ player.x - slot.slots[1].width - 5, floor.y + 1, 38, 38};
+        slot.slots[4] = (Rectangle){ player.x - (slot.slots[3].width * 2) - 10, floor.y + 1, 38, 38};
         float frametime = GetFrameTime();
 
         // 1. Movimento Horizontal
@@ -137,10 +148,17 @@ int main() {
             DrawRectangleRec(slot.slots[2], GRAY);
             DrawRectangleRec(slot.slots[3], GRAY);
             DrawRectangleRec(slot.slots[4], GRAY);
+
+            
+
             for (int i = 0; i < 5; i++){
-                char texto[20];
-                sprintf(texto, "%s\n%d", inventor.slots[i].nome, inventor.slots[i].quantidade);
-                DrawText(texto, slot.slots[i].x + 1, slot.slots[i].y, 5, BLACK);
+                if (strcmp(inventor.slots[i].nome, "empty") != 0){
+                    char texto[20];
+                    sprintf(texto, "\n\n%d", inventor.slots[i].quantidade);
+                    DrawTexture(texturascarregadas[i], slot.slots[i].x + 1, slot.slots[i].y, WHITE);
+                    DrawText(texto, slot.slots[i].x + 1, slot.slots[i].y, 12, WHITE);
+                }
+                
             }
             DrawText("SLOTS!", 10, 10, 20, DARKGRAY);
         EndDrawing();

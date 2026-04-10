@@ -6,6 +6,7 @@ typedef struct{
         char nome[50];
         int id;
         int quantidade;
+        char textura[50];
 } item;
 
 typedef struct{
@@ -15,13 +16,13 @@ typedef struct{
 
 int main(){
 
-    FILE *invtxt = fopen("/home/modulescript/projetos/C-learning-projects/Mini-Block-Man/inv.txt", "w");
+    FILE *invtxt = fopen("../inv.txt", "w");
     
     inventory inv = {{
-        {"picaxe", 3, 1}, 
-        {"axe", 2, 1}, 
-        {"sword", 1, 1}, 
-        {"grass block", 4, 1}, 
+        {"picaxe", 3, 1, "itemtextures/stone_picaxe.png"}, 
+        {"axe", 2, 1, "itemtextures/stone_axe.png"}, 
+        {"sword", 1, 1, "itemtextures/stone_sword.png"}, 
+        {"spruce log", 4, 1, "itemtextures/spruce_log.png"}, 
         {"empty", 0, 1}
     }};
     for (int i = 0; i < 5; i++){
@@ -30,7 +31,7 @@ int main(){
         } else {
             printf("existe\n");
             char item[50];
-            sprintf(item, "%s|%d|%d\n", inv.slots[i].nome, inv.slots[i].id, inv.slots[i].quantidade);
+            sprintf(item, "%s|%d|%d|%s\n", inv.slots[i].nome, inv.slots[i].id, inv.slots[i].quantidade, inv.slots[i].textura);
             fputs(item, invtxt);
         }
     }

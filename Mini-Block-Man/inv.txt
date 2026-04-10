@@ -1,5 +1,5 @@
-picaxe|3|1
-axe|2|1
-sword|1|1
-grass block|4|1
-empty|0|1
+picaxe|3|1|itemtextures/stone_picaxe.png
+axe|2|1|itemtextures/stone_axe.png
+sword|1|1|itemtextures/stone_sword.png
+spruce log|4|1|itemtextures/spruce_log.png
+empty|0|1|
