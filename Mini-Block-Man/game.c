@@ -41,7 +41,7 @@ inventory ler_inv(){
             char *antesdabarra = strchr(linha, '|');
             if (antesdabarra != NULL){
                 *antesdabarra = '\0';
-                strcpy(inventor.slots[times].nome, antesdabarra);
+                strcpy(inventor.slots[times].nome, linha);
             }
             char *depoisdabarra = strchr(linha, '|');
             if (depoisdabarra != NULL){
@@ -138,7 +138,9 @@ int main() {
             DrawRectangleRec(slot.slots[3], GRAY);
             DrawRectangleRec(slot.slots[4], GRAY);
             for (int i = 0; i < 5; i++){
-                DrawText(inventor.slots[i].nome, slot.slots[i].x + 1, slot.slots[i].y, 5, BLACK);
+                char texto[20];
+                sprintf(texto, "%s\n%d", inventor.slots[i].nome, inventor.slots[i].quantidade);
+                DrawText(texto, slot.slots[i].x + 1, slot.slots[i].y, 5, BLACK);
             }
             DrawText("SLOTS!", 10, 10, 20, DARKGRAY);
         EndDrawing();

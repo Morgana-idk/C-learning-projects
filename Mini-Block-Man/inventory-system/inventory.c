@@ -9,7 +9,7 @@ typedef struct{
 } item;
 
 typedef struct{
-    item slots[5]
+    item slots[5];
 } inventory;
 
 
